@@ -1,10 +1,10 @@
 import Image from "next/image";
 
-const menuItems = [
+const menu = [
   {
     num: "01",
     name: "Margherita",
-    desc: "San Marzano · Fior di Latte · Basilikum · Olivenöl E.V.",
+    desc: "San Marzano D.O.P. · Fior di Latte · Basilikum · Olivenöl E.V.",
     price: "12",
   },
   {
@@ -19,135 +19,243 @@ const menuItems = [
     desc: "Mozzarella · Gorgonzola · Pecorino Romano · Parmigiano",
     price: "15",
   },
+  {
+    num: "04",
+    name: "Prosciutto e Funghi",
+    desc: "San Marzano · Mozzarella · Schinken · Champignons",
+    price: "13",
+  },
+];
+
+const privateEvents = [
+  "Geburtstagsfeiern",
+  "Hochzeiten & Empfänge",
+  "Firmenevents",
+  "Gartenfeste & Jubiläen",
+];
+
+const publicEvents = [
+  "Stadtfeste & Straßenfeste",
+  "Weihnachts- & Jahrmärkte",
+  "Weinfeste der Region",
+  "Open-Air-Festivals",
 ];
 
 const marqueeText =
-  "FRISCH GEBACKEN · HANDGEMACHT · NAPOLI STYLE · PREMIUM ZUTATEN · 72H TEIG · HOLZOFEN · ";
+  "AUTENTICA NAPOLETANA · HOLZOFEN 450°C · HANDGEMACHT · 72H TEIG · PRIVATFEIERN · STADTFESTE · ";
 const marqueeContent = Array(6).fill(marqueeText).join("");
 
 export default function Home() {
   return (
     <>
       {/* ── NAV ── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-16 py-5 bg-cream/95 backdrop-blur-sm border-b border-dark/5">
-        <span className="font-serif text-sm tracking-[0.2em] uppercase">
-          Pizza von Guiseppe
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-16 py-5 bg-cream/96 backdrop-blur-sm border-b border-dark/5">
+        <span className="font-serif text-sm tracking-[0.2em] uppercase text-dark">
+          Pizza Napoletano
         </span>
-        <ul className="hidden md:flex gap-10 text-[11px] tracking-[0.25em] uppercase text-dark/60">
+        <ul className="hidden md:flex gap-10 text-[11px] tracking-[0.25em] uppercase text-dark/50">
           <li>
-            <a href="#menu" className="hover:text-dark transition-colors">
-              Menü
+            <a href="#speisekarte" className="hover:text-dark transition-colors">
+              Speisekarte
             </a>
           </li>
           <li>
-            <a href="#story" className="hover:text-dark transition-colors">
-              Über uns
+            <a href="#veranstaltungen" className="hover:text-dark transition-colors">
+              Veranstaltungen
             </a>
           </li>
           <li>
-            <a href="#location" className="hover:text-dark transition-colors">
+            <a href="#standort" className="hover:text-dark transition-colors">
               Standort
             </a>
           </li>
         </ul>
+        <a
+          href="#kontakt"
+          className="hidden md:block text-[11px] tracking-[0.3em] uppercase bg-dark text-cream px-6 py-2.5 hover:bg-it-red transition-colors duration-300"
+        >
+          Anfrage
+        </a>
       </nav>
 
       {/* ── HERO ── */}
-      <section className="relative h-screen bg-dark flex items-end overflow-hidden">
-        <div className="absolute inset-0">
+      <section className="relative min-h-screen bg-amber flex flex-col items-center justify-center overflow-hidden px-8 pt-24 pb-16">
+        {/* Giant background text */}
+        <div
+          className="absolute inset-0 flex items-center justify-center overflow-hidden select-none pointer-events-none"
+          aria-hidden
+        >
+          <span
+            className="font-serif font-black tracking-tight leading-none"
+            style={{ fontSize: "20vw", color: "rgba(100, 50, 8, 0.14)" }}
+          >
+            NAPOLETANO
+          </span>
+        </div>
+
+        <p className="relative z-10 text-white/75 text-[11px] tracking-[0.5em] uppercase mb-8 text-center">
+          La Pizza Autentica · Bergstraße
+        </p>
+
+        {/* Circular pizza image */}
+        <div className="relative z-10 w-72 h-72 md:w-[460px] md:h-[460px] rounded-full overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.30)] mb-10 ring-4 ring-white/15">
           <Image
-            src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1920&q=85"
-            alt="Pizza von Guiseppe"
+            src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=90"
+            alt="Pizza Napoletana"
             fill
-            className="object-cover opacity-35"
+            className="object-cover"
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-dark/20" />
 
-        <div className="relative z-10 px-8 md:px-16 pb-24 max-w-6xl">
-          <p className="text-accent text-[11px] tracking-[0.45em] uppercase mb-8">
-            Pizza Truck · München
-          </p>
-          <h1 className="font-serif text-white italic leading-[0.88] mb-8" style={{ fontSize: "clamp(4.5rem, 13vw, 11rem)" }}>
-            Echte<br />Pizza.
-          </h1>
-          <p className="text-white/50 text-sm leading-relaxed max-w-xs mb-12 tracking-wide">
-            Neapolitanischer Teig, 72 Stunden gereift. Zutaten direkt aus
-            Kampanien. Holzofen auf 450 °C.
-          </p>
+        <h1
+          className="relative z-10 font-serif text-white italic text-center leading-[0.9] mb-5"
+          style={{ fontSize: "clamp(3.2rem, 9vw, 7rem)" }}
+        >
+          La Pizza<br />Autentica.
+        </h1>
+        <p className="relative z-10 text-white/65 text-[11px] tracking-[0.45em] uppercase mb-10 text-center">
+          Holzofen · Privatfeiern · Stadtfeste
+        </p>
+
+        <div className="relative z-10 flex flex-col sm:flex-row gap-4">
           <a
-            href="#menu"
-            className="inline-block border border-white/25 text-white text-[11px] tracking-[0.35em] uppercase px-10 py-4 hover:bg-white hover:text-dark transition-all duration-300"
+            href="#veranstaltungen"
+            className="bg-white text-dark text-[11px] tracking-[0.3em] uppercase px-10 py-4 text-center hover:bg-cream transition-colors duration-300"
           >
-            Zur Speisekarte
+            Veranstaltungen
+          </a>
+          <a
+            href="#speisekarte"
+            className="border border-white/35 text-white text-[11px] tracking-[0.3em] uppercase px-10 py-4 text-center hover:bg-white/10 transition-colors duration-300"
+          >
+            Speisekarte
           </a>
         </div>
 
-        <div className="absolute bottom-10 right-8 md:right-16 flex flex-col items-center gap-3 text-white/25">
-          <div className="w-px h-14 bg-white/15" />
-          <span className="text-[9px] tracking-[0.35em] uppercase" style={{ writingMode: "vertical-rl" }}>
-            Scroll
-          </span>
-        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cream to-transparent" />
       </section>
 
       {/* ── MARQUEE ── */}
-      <div className="bg-cream border-y border-dark/10 py-[18px] overflow-hidden">
+      <div className="bg-cream border-y border-dark/8 py-[18px] overflow-hidden">
         <div className="animate-marquee whitespace-nowrap inline-block">
           <span className="text-[11px] tracking-[0.35em] text-dark/25 uppercase">
             {marqueeContent}
           </span>
-          <span className="text-[11px] tracking-[0.35em] text-dark/25 uppercase" aria-hidden>
+          <span
+            className="text-[11px] tracking-[0.35em] text-dark/25 uppercase"
+            aria-hidden
+          >
             {marqueeContent}
           </span>
         </div>
       </div>
 
-      {/* ── MENU ── */}
-      <section id="menu" className="bg-cream py-28 md:py-36 px-8 md:px-16">
+      {/* ── VERANSTALTUNGEN ── */}
+      <section id="veranstaltungen" className="grid md:grid-cols-2">
+        {/* Privatfeiern — Italian Red */}
+        <div className="bg-it-red text-white px-10 md:px-20 py-24 md:py-32">
+          <p className="text-[11px] tracking-[0.45em] uppercase text-white/35 mb-8">
+            01 · Privatfeiern
+          </p>
+          <h2
+            className="font-serif italic text-white leading-[0.95] mb-8"
+            style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}
+          >
+            Ihr Fest.<br />Unsere Pizza.
+          </h2>
+          <p className="text-white/55 text-sm leading-[1.9] mb-10 max-w-xs">
+            Von der eleganten Hochzeit bis zum ausgelassenen Geburtstag — wir
+            kommen zu Ihnen. Frisch gebacken im Holzofen, direkt vor Ort.
+          </p>
+          <ul className="space-y-3 mb-12">
+            {privateEvents.map((e) => (
+              <li key={e} className="flex items-center gap-3 text-sm text-white/50">
+                <span className="w-1 h-1 rounded-full bg-white/30 flex-none" />
+                {e}
+              </li>
+            ))}
+          </ul>
+          <a
+            href="#kontakt"
+            className="inline-block border border-white/25 text-white text-[11px] tracking-[0.3em] uppercase px-8 py-4 hover:bg-white hover:text-it-red transition-all duration-300"
+          >
+            Termin anfragen
+          </a>
+        </div>
+
+        {/* Stadtfeste — Italian Green */}
+        <div className="bg-it-green text-white px-10 md:px-20 py-24 md:py-32">
+          <p className="text-[11px] tracking-[0.45em] uppercase text-white/35 mb-8">
+            02 · Stadtfeste & Märkte
+          </p>
+          <h2
+            className="font-serif italic text-white leading-[0.95] mb-8"
+            style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}
+          >
+            Für die<br />große Bühne.
+          </h2>
+          <p className="text-white/55 text-sm leading-[1.9] mb-10 max-w-xs">
+            Wir sind auf den beliebtesten Festen der Region Bergstraße dabei.
+            Unser Truck wird zum Herzstück jedes Markts und Stadtfests.
+          </p>
+          <ul className="space-y-3 mb-12">
+            {publicEvents.map((e) => (
+              <li key={e} className="flex items-center gap-3 text-sm text-white/50">
+                <span className="w-1 h-1 rounded-full bg-white/30 flex-none" />
+                {e}
+              </li>
+            ))}
+          </ul>
+          <a
+            href="#kontakt"
+            className="inline-block border border-white/25 text-white text-[11px] tracking-[0.3em] uppercase px-8 py-4 hover:bg-white hover:text-it-green transition-all duration-300"
+          >
+            Buchung anfragen
+          </a>
+        </div>
+      </section>
+
+      {/* ── SPEISEKARTE ── */}
+      <section id="speisekarte" className="bg-cream py-28 md:py-36 px-8 md:px-16">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-dark/10 pb-10 mb-0">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-dark/10 pb-10">
             <div>
-              <p className="text-[11px] tracking-[0.45em] uppercase text-dark/35 mb-4">
-                Handgemacht seit 2019
+              <p className="text-[11px] tracking-[0.45em] uppercase text-dark/30 mb-4">
+                Dal forno a legna
               </p>
               <h2
                 className="font-serif italic text-dark leading-tight"
                 style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
               >
-                Unsere Pizzen
+                La Nostra Pizza
               </h2>
             </div>
-            <a
-              href="#"
-              className="text-[11px] tracking-[0.3em] uppercase border-b border-dark/40 pb-1 text-dark/60 hover:text-dark hover:border-dark transition-colors self-start md:self-auto"
-            >
-              Vollständige Karte
-            </a>
+            <p className="text-xs text-dark/35 leading-relaxed hidden md:block text-right">
+              Alle Pizzen werden im Holzofen<br />bei 450 °C gebacken.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-3">
-            {menuItems.map((item, i) => (
+          <div className="grid md:grid-cols-4">
+            {menu.map((item, i) => (
               <div
                 key={item.num}
                 className={[
-                  "py-14",
-                  i < menuItems.length - 1 ? "md:border-r border-dark/10" : "",
-                  i > 0 ? "md:px-12" : "md:pr-12",
-                  "border-t border-dark/10",
+                  "py-12 border-t border-dark/10",
+                  i < menu.length - 1 ? "md:border-r border-dark/10" : "",
+                  i > 0 ? "md:px-8" : "md:pr-8",
                 ].join(" ")}
               >
-                <span className="text-[11px] tracking-[0.3em] text-dark/25 uppercase">
+                <span className="text-[10px] tracking-[0.3em] text-dark/20 uppercase">
                   {item.num}
                 </span>
-                <h3 className="font-serif text-[1.85rem] italic mt-5 mb-4 leading-tight">
+                <h3 className="font-serif text-[1.45rem] italic mt-4 mb-3 leading-tight">
                   {item.name}
                 </h3>
-                <p className="text-sm text-dark/45 leading-loose mb-10">
+                <p className="text-xs text-dark/40 leading-loose mb-8">
                   {item.desc}
                 </p>
-                <span className="font-serif text-xl text-dark/70">
+                <span className="font-serif text-xl text-dark/60">
                   € {item.price}
                 </span>
               </div>
@@ -156,105 +264,134 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── STORY ── */}
-      <section id="story" className="grid md:grid-cols-2">
-        <div className="relative min-h-[55vh] md:min-h-[680px]">
-          <Image
-            src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900&q=85"
-            alt="Handgemachte Pizza"
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="bg-dark text-white flex items-center px-10 md:px-20 py-20 md:py-28">
+      {/* ── STORIA ── */}
+      <section className="grid md:grid-cols-2">
+        <div className="bg-dark text-white flex items-center px-10 md:px-20 py-20 md:py-28 order-2 md:order-1">
           <div className="max-w-sm">
-            <p className="text-[11px] tracking-[0.45em] uppercase text-accent mb-10">
-              Unsere Geschichte
+            <p className="text-[11px] tracking-[0.45em] uppercase text-amber mb-10">
+              La Nostra Storia
             </p>
             <h2
               className="font-serif italic text-white leading-[0.95] mb-10"
               style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}
             >
-              Pizza ist<br />Handwerk.
+              Authentizität<br />seit der ersten<br />Pizza.
             </h2>
             <p className="text-white/45 text-sm leading-[1.9] mb-5">
-              Guiseppe wuchs in Neapel auf, wo jede Nonna ihre eigene
-              Geheimformel hatte. 2019 brachte er diese Leidenschaft nach
-              München — auf vier Rädern, mit eigenem Holzofen.
+              Die Kunst der neapolitanischen Pizza liegt im Teig. 72 Stunden
+              Reifezeit, Tipo 00-Mehl und natürliche Fermentation — das ist das
+              Fundament jeder Pizza Napoletano.
             </p>
             <p className="text-white/45 text-sm leading-[1.9]">
-              Unsere Zutaten kommen direkt aus Kampanien: San Marzano-Tomaten,
-              echter Fior di Latte, kaltgepresstes Olivenöl aus Apulien.
+              Unsere Zutaten kommen direkt aus Kampanien: San Marzano D.O.P.
+              Tomaten, echter Fior di Latte, kaltgepresstes Olivenöl aus
+              Apulien.
             </p>
-            <div className="mt-14 pt-8 border-t border-white/10">
-              <p className="font-serif italic text-base text-white/40">
-                — Guiseppe Ferrara
-              </p>
+            <div className="mt-12 pt-8 border-t border-white/10 grid grid-cols-3 gap-6">
+              {[
+                { val: "72h", label: "Teig-Reife" },
+                { val: "450°", label: "Holzofen" },
+                { val: "100%", label: "Handgemacht" },
+              ].map(({ val, label }) => (
+                <div key={label}>
+                  <p className="font-serif italic text-2xl text-white mb-1">{val}</p>
+                  <p className="text-[9px] tracking-[0.3em] uppercase text-white/25">
+                    {label}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
+        <div className="relative min-h-[55vh] md:min-h-[700px] order-1 md:order-2">
+          <Image
+            src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900&q=85"
+            alt="Pizza Napoletana aus dem Holzofen"
+            fill
+            className="object-cover"
+          />
+        </div>
       </section>
 
-      {/* ── LOCATION ── */}
-      <section id="location" className="bg-[#0D0B08] text-white py-28 md:py-36 px-8 md:px-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <p className="text-[11px] tracking-[0.45em] uppercase text-accent mb-8">
-              Finden Sie uns
-            </p>
-            <h2
-              className="font-serif italic text-white"
-              style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
-            >
-              Täglich vor Ort
-            </h2>
-          </div>
+      {/* ── STANDORT & KONTAKT ── */}
+      <section
+        id="standort"
+        className="bg-amber py-28 md:py-36 px-8 md:px-16 relative overflow-hidden"
+      >
+        <div
+          className="absolute inset-0 flex items-center justify-center overflow-hidden select-none pointer-events-none"
+          aria-hidden
+        >
+          <span
+            className="font-serif font-black leading-none tracking-tight"
+            style={{ fontSize: "28vw", color: "rgba(100, 50, 8, 0.12)" }}
+          >
+            BERGSTR.
+          </span>
+        </div>
 
-          <div className="grid md:grid-cols-3 gap-12 border-t border-white/8 pt-16">
+        <div className="max-w-6xl mx-auto relative z-10">
+          <p className="text-[11px] tracking-[0.45em] uppercase text-white/55 mb-8 text-center">
+            Finden Sie uns
+          </p>
+          <h2
+            className="font-serif italic text-white text-center mb-20"
+            style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
+          >
+            Täglich vor Ort
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-12 border-t border-white/20 pt-16">
             <div>
-              <p className="text-[10px] tracking-[0.45em] uppercase text-white/25 mb-5">
+              <p className="text-[10px] tracking-[0.45em] uppercase text-white/35 mb-5">
                 Standort
               </p>
-              <p className="text-white/65 text-sm leading-[1.9]">
-                Leopoldstraße 12
-                <br />
-                80802 München
-                <br />
-                Maxvorstadt
+              <p className="text-white/75 text-sm leading-[1.9]">
+                Region Bergstraße<br />
+                Hessen / Baden-Württemberg
               </p>
             </div>
             <div>
-              <p className="text-[10px] tracking-[0.45em] uppercase text-white/25 mb-5">
-                Öffnungszeiten
+              <p className="text-[10px] tracking-[0.45em] uppercase text-white/35 mb-5">
+                Präsenz
               </p>
-              <p className="text-white/65 text-sm leading-[1.9]">
-                Mo–Fr · 11:00–22:00
-                <br />
-                Sa–So · 12:00–23:00
+              <p className="text-white/75 text-sm leading-[1.9]">
+                Auf regionalen Märkten<br />& Stadtfesten<br />sowie bei Privatbuchungen
               </p>
             </div>
-            <div>
-              <p className="text-[10px] tracking-[0.45em] uppercase text-white/25 mb-5">
-                Kontakt
+            <div id="kontakt">
+              <p className="text-[10px] tracking-[0.45em] uppercase text-white/35 mb-5">
+                Kontakt & Buchung
               </p>
-              <p className="text-white/65 text-sm leading-[1.9]">
-                @pizzavonguiseppe
-                <br />
-                info@pizzavonguiseppe.de
+              <p className="text-white/75 text-sm leading-[1.9]">
+                @pizzanapoletano.bergstrasse<br />
+                info@pizza-napoletano.de
               </p>
+              <a
+                href="mailto:info@pizza-napoletano.de"
+                className="mt-8 inline-block bg-white text-dark text-[11px] tracking-[0.3em] uppercase px-8 py-4 hover:bg-cream transition-colors duration-300"
+              >
+                Jetzt anfragen
+              </a>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="bg-cream border-t border-dark/8 px-8 md:px-16 py-8">
+      <footer className="bg-dark px-8 md:px-16 py-8">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <span className="font-serif italic text-sm text-dark/35">
-            Pizza von Guiseppe
+          <span className="font-serif italic text-sm text-white/25">
+            Pizza Napoletano
           </span>
-          <span className="text-[10px] tracking-[0.25em] uppercase text-dark/25">
-            © 2025 · München
+          {/* Italian flag */}
+          <div className="flex items-center gap-0.5" aria-label="Italian flag">
+            <div className="w-5 h-3 bg-[#009246] opacity-60" />
+            <div className="w-5 h-3 bg-white/40" />
+            <div className="w-5 h-3 bg-[#CE2B37] opacity-60" />
+          </div>
+          <span className="text-[10px] tracking-[0.25em] uppercase text-white/20">
+            © 2025 · Bergstraße
           </span>
         </div>
       </footer>

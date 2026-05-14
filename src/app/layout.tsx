@@ -15,9 +15,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Pizza von Guiseppe — Authentische neapolitanische Pizza",
+  title: "Pizza Napoletano — La Pizza Autentica",
   description:
-    "Neapolitanischer Teig, 72 Stunden gereift. Premium-Zutaten aus Kampanien. Gebacken im Holzofen auf 450 °C.",
+    "Authentische neapolitanische Pizza aus dem Holzofen. Privatfeiern & Stadtfeste in der Region Bergstraße.",
 };
 
 export default function RootLayout({

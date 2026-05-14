@@ -13,12 +13,14 @@ const config: Config = {
         sans: ["var(--font-dm-sans)", "sans-serif"],
       },
       colors: {
-        cream: "#F5F0E8",
-        dark: "#0A0A0A",
-        accent: "#B8975A",
+        cream: "#FDF8F0",
+        dark: "#1A0E08",
+        amber: "#D97B1A",
+        "it-red": "#A01E12",
+        "it-green": "#1A4A1F",
       },
       animation: {
-        marquee: "marquee 35s linear infinite",
+        marquee: "marquee 40s linear infinite",
       },
       keyframes: {
         marquee: {

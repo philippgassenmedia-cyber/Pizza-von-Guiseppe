@@ -8,14 +8,14 @@
   }
 
   body {
-    background-color: #F5F0E8;
-    color: #0A0A0A;
+    background-color: #FDF8F0;
+    color: #1A0E08;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background-color: #B8975A;
+    background-color: #D97B1A;
     color: #fff;
   }
 }
