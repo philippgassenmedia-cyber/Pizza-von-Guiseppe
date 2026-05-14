@@ -1,4 +1,5 @@
 import Image from "next/image";
+import HeroMorph from "./components/HeroMorph";
 
 // ── Pizza SVG: one image, divided into N sectors, each offset outward ──
 const SLICE_COUNT = 8;
@@ -160,64 +161,8 @@ export default function Home() {
         </a>
       </nav>
 
-      {/* ── HERO ── */}
-      <section className="min-h-screen bg-cream flex flex-col items-center justify-center px-6 pt-28 pb-16">
-        {/* Label */}
-        <p className="text-[10px] tracking-[0.55em] text-dark/30 uppercase mb-8 text-center">
-          La Pizza Autentica · Bergstraße
-        </p>
-
-        {/* Headline */}
-        <h1
-          className="font-serif italic text-dark text-center leading-[0.88] mb-10 md:mb-14"
-          style={{ fontSize: "clamp(3.2rem, 11vw, 9rem)" }}
-        >
-          Pizza<br />Napoletano.
-        </h1>
-
-        {/* SVG Pizza — the centrepiece */}
-        <div
-          className="w-full max-w-[360px] md:max-w-[520px] aspect-square"
-          style={{
-            filter:
-              "drop-shadow(0px 24px 56px rgba(26,14,8,0.22)) drop-shadow(0px 4px 16px rgba(26,14,8,0.12))",
-          }}
-        >
-          <PizzaSVG />
-        </div>
-
-        {/* Subline */}
-        <p className="text-[11px] tracking-[0.45em] text-dark/35 uppercase mt-10 mb-10 text-center">
-          Holzofen · Privatfeiern · Stadtfeste
-        </p>
-
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4">
-          <a
-            href="#veranstaltungen"
-            className="bg-dark text-cream text-[11px] tracking-[0.3em] uppercase px-10 py-4 text-center hover:bg-it-red transition-colors duration-300"
-          >
-            Veranstaltungen
-          </a>
-          <a
-            href="#speisekarte"
-            className="border border-dark/20 text-dark text-[11px] tracking-[0.3em] uppercase px-10 py-4 text-center hover:bg-dark hover:text-cream transition-colors duration-300"
-          >
-            Speisekarte
-          </a>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="flex flex-col items-center gap-2 mt-16 text-dark/20">
-          <div className="w-px h-10 bg-dark/15" />
-          <span
-            className="text-[9px] tracking-[0.35em] uppercase"
-            style={{ writingMode: "vertical-rl" }}
-          >
-            Scroll
-          </span>
-        </div>
-      </section>
+      {/* ── HERO — scroll-morph: 3 slices fan → spread ── */}
+      <HeroMorph />
 
       {/* ── TEIG SEKTION — transmorphism transition ── */}
       <section className="bg-cream overflow-hidden">
