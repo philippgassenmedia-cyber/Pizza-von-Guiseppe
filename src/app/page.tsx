@@ -1,5 +1,82 @@
 import Image from "next/image";
 
+// ── Pizza SVG: one image, divided into N sectors, each offset outward ──
+const SLICE_COUNT = 8;
+const SVG_SIZE = 500;
+const CX = 250;
+const CY = 250;
+const RADIUS = 244;
+const GAP = 9; // px each slice is pushed outward
+const PIZZA_IMG =
+  "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=90";
+
+function buildSlices() {
+  return Array.from({ length: SLICE_COUNT }, (_, i) => {
+    const startA = (i / SLICE_COUNT) * 2 * Math.PI - Math.PI / 2;
+    const endA = ((i + 1) / SLICE_COUNT) * 2 * Math.PI - Math.PI / 2;
+    const midA = startA + (endA - startA) / 2;
+
+    // outward offset
+    const dx = +(GAP * Math.cos(midA)).toFixed(2);
+    const dy = +(GAP * Math.sin(midA)).toFixed(2);
+
+    // arc path with many points for a smooth curve
+    const steps = 12;
+    const pts = Array.from({ length: steps + 1 }, (_, s) => {
+      const a = startA + (endA - startA) * (s / steps);
+      return `${(CX + RADIUS * Math.cos(a)).toFixed(2)},${(CY + RADIUS * Math.sin(a)).toFixed(2)}`;
+    });
+
+    return { path: `M ${CX},${CY} L ${pts.join(" L ")} Z`, dx, dy };
+  });
+}
+
+const pizzaSlices = buildSlices();
+
+function PizzaSVG() {
+  return (
+    <svg
+      viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
+      className="w-full h-full"
+      role="img"
+      aria-label="Pizza Napoletano"
+    >
+      <defs>
+        {pizzaSlices.map((s, i) => (
+          <clipPath key={i} id={`pn-clip-${i}`}>
+            <path d={s.path} />
+          </clipPath>
+        ))}
+      </defs>
+
+      {pizzaSlices.map((s, i) => (
+        <g key={i} transform={`translate(${s.dx},${s.dy})`}>
+          {/* Pizza image clipped to this sector */}
+          <image
+            href={PIZZA_IMG}
+            x="0"
+            y="0"
+            width={SVG_SIZE}
+            height={SVG_SIZE}
+            clipPath={`url(#pn-clip-${i})`}
+            preserveAspectRatio="xMidYMid slice"
+          />
+          {/* Thin dark border to separate slices */}
+          <path
+            d={s.path}
+            fill="none"
+            stroke="#1a0800"
+            strokeWidth="2"
+            opacity="0.12"
+          />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+// ── Page data ──────────────────────────────────────────────────────────────
+
 const menu = [
   {
     num: "01",
@@ -45,6 +122,8 @@ const marqueeText =
   "AUTENTICA NAPOLETANA · HOLZOFEN 450°C · HANDGEMACHT · 72H TEIG · PRIVATFEIERN · STADTFESTE · ";
 const marqueeContent = Array(6).fill(marqueeText).join("");
 
+// ── Page ───────────────────────────────────────────────────────────────────
+
 export default function Home() {
   return (
     <>
@@ -60,7 +139,10 @@ export default function Home() {
             </a>
           </li>
           <li>
-            <a href="#veranstaltungen" className="hover:text-dark transition-colors">
+            <a
+              href="#veranstaltungen"
+              className="hover:text-dark transition-colors"
+            >
               Veranstaltungen
             </a>
           </li>
@@ -79,61 +161,62 @@ export default function Home() {
       </nav>
 
       {/* ── HERO ── */}
-      <section className="relative min-h-screen bg-amber flex flex-col items-center justify-center overflow-hidden px-8 pt-24 pb-16">
-        {/* Giant background text */}
-        <div
-          className="absolute inset-0 flex items-center justify-center overflow-hidden select-none pointer-events-none"
-          aria-hidden
-        >
-          <span
-            className="font-serif font-black tracking-tight leading-none"
-            style={{ fontSize: "20vw", color: "rgba(100, 50, 8, 0.14)" }}
-          >
-            NAPOLETANO
-          </span>
-        </div>
-
-        <p className="relative z-10 text-white/75 text-[11px] tracking-[0.5em] uppercase mb-8 text-center">
+      <section className="min-h-screen bg-cream flex flex-col items-center justify-center px-6 pt-28 pb-16">
+        {/* Label */}
+        <p className="text-[10px] tracking-[0.55em] text-dark/30 uppercase mb-8 text-center">
           La Pizza Autentica · Bergstraße
         </p>
 
-        {/* Circular pizza image */}
-        <div className="relative z-10 w-72 h-72 md:w-[460px] md:h-[460px] rounded-full overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.30)] mb-10 ring-4 ring-white/15">
-          <Image
-            src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=90"
-            alt="Pizza Napoletana"
-            fill
-            className="object-cover"
-            priority
-          />
+        {/* Headline */}
+        <h1
+          className="font-serif italic text-dark text-center leading-[0.88] mb-10 md:mb-14"
+          style={{ fontSize: "clamp(3.2rem, 11vw, 9rem)" }}
+        >
+          Pizza<br />Napoletano.
+        </h1>
+
+        {/* SVG Pizza — the centrepiece */}
+        <div
+          className="w-full max-w-[360px] md:max-w-[520px] aspect-square"
+          style={{
+            filter:
+              "drop-shadow(0px 24px 56px rgba(26,14,8,0.22)) drop-shadow(0px 4px 16px rgba(26,14,8,0.12))",
+          }}
+        >
+          <PizzaSVG />
         </div>
 
-        <h1
-          className="relative z-10 font-serif text-white italic text-center leading-[0.9] mb-5"
-          style={{ fontSize: "clamp(3.2rem, 9vw, 7rem)" }}
-        >
-          La Pizza<br />Autentica.
-        </h1>
-        <p className="relative z-10 text-white/65 text-[11px] tracking-[0.45em] uppercase mb-10 text-center">
+        {/* Subline */}
+        <p className="text-[11px] tracking-[0.45em] text-dark/35 uppercase mt-10 mb-10 text-center">
           Holzofen · Privatfeiern · Stadtfeste
         </p>
 
-        <div className="relative z-10 flex flex-col sm:flex-row gap-4">
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-4">
           <a
             href="#veranstaltungen"
-            className="bg-white text-dark text-[11px] tracking-[0.3em] uppercase px-10 py-4 text-center hover:bg-cream transition-colors duration-300"
+            className="bg-dark text-cream text-[11px] tracking-[0.3em] uppercase px-10 py-4 text-center hover:bg-it-red transition-colors duration-300"
           >
             Veranstaltungen
           </a>
           <a
             href="#speisekarte"
-            className="border border-white/35 text-white text-[11px] tracking-[0.3em] uppercase px-10 py-4 text-center hover:bg-white/10 transition-colors duration-300"
+            className="border border-dark/20 text-dark text-[11px] tracking-[0.3em] uppercase px-10 py-4 text-center hover:bg-dark hover:text-cream transition-colors duration-300"
           >
             Speisekarte
           </a>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cream to-transparent" />
+        {/* Scroll indicator */}
+        <div className="flex flex-col items-center gap-2 mt-16 text-dark/20">
+          <div className="w-px h-10 bg-dark/15" />
+          <span
+            className="text-[9px] tracking-[0.35em] uppercase"
+            style={{ writingMode: "vertical-rl" }}
+          >
+            Scroll
+          </span>
+        </div>
       </section>
 
       {/* ── MARQUEE ── */}
@@ -170,7 +253,10 @@ export default function Home() {
           </p>
           <ul className="space-y-3 mb-12">
             {privateEvents.map((e) => (
-              <li key={e} className="flex items-center gap-3 text-sm text-white/50">
+              <li
+                key={e}
+                className="flex items-center gap-3 text-sm text-white/50"
+              >
                 <span className="w-1 h-1 rounded-full bg-white/30 flex-none" />
                 {e}
               </li>
@@ -201,7 +287,10 @@ export default function Home() {
           </p>
           <ul className="space-y-3 mb-12">
             {publicEvents.map((e) => (
-              <li key={e} className="flex items-center gap-3 text-sm text-white/50">
+              <li
+                key={e}
+                className="flex items-center gap-3 text-sm text-white/50"
+              >
                 <span className="w-1 h-1 rounded-full bg-white/30 flex-none" />
                 {e}
               </li>
@@ -287,14 +376,16 @@ export default function Home() {
               Tomaten, echter Fior di Latte, kaltgepresstes Olivenöl aus
               Apulien.
             </p>
-            <div className="mt-12 pt-8 border-t border-white/10 grid grid-cols-3 gap-6">
+            <div className="mt-12 pt-8 border-t border-white/10 grid grid-cols-3 gap-4">
               {[
                 { val: "72h", label: "Teig-Reife" },
                 { val: "450°", label: "Holzofen" },
                 { val: "100%", label: "Handgemacht" },
               ].map(({ val, label }) => (
                 <div key={label}>
-                  <p className="font-serif italic text-2xl text-white mb-1">{val}</p>
+                  <p className="font-serif italic text-2xl text-white mb-1">
+                    {val}
+                  </p>
                   <p className="text-[9px] tracking-[0.3em] uppercase text-white/25">
                     {label}
                   </p>
@@ -313,7 +404,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── STANDORT & KONTAKT ── */}
+      {/* ── STANDORT ── */}
       <section
         id="standort"
         className="bg-amber py-28 md:py-36 px-8 md:px-16 relative overflow-hidden"
@@ -324,7 +415,7 @@ export default function Home() {
         >
           <span
             className="font-serif font-black leading-none tracking-tight"
-            style={{ fontSize: "28vw", color: "rgba(100, 50, 8, 0.12)" }}
+            style={{ fontSize: "26vw", color: "rgba(100,50,8,0.12)" }}
           >
             BERGSTR.
           </span>
@@ -356,7 +447,8 @@ export default function Home() {
                 Präsenz
               </p>
               <p className="text-white/75 text-sm leading-[1.9]">
-                Auf regionalen Märkten<br />& Stadtfesten<br />sowie bei Privatbuchungen
+                Auf regionalen Märkten<br />& Stadtfesten<br />sowie bei
+                Privatbuchungen
               </p>
             </div>
             <div id="kontakt">
@@ -384,8 +476,7 @@ export default function Home() {
           <span className="font-serif italic text-sm text-white/25">
             Pizza Napoletano
           </span>
-          {/* Italian flag */}
-          <div className="flex items-center gap-0.5" aria-label="Italian flag">
+          <div className="flex items-center gap-0.5" aria-label="Bandiera italiana">
             <div className="w-5 h-3 bg-[#009246] opacity-60" />
             <div className="w-5 h-3 bg-white/40" />
             <div className="w-5 h-3 bg-[#CE2B37] opacity-60" />
