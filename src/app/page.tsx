@@ -219,6 +219,70 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── TEIG SEKTION — transmorphism transition ── */}
+      <section className="bg-cream overflow-hidden">
+        <div className="grid md:grid-cols-2 min-h-[90vh]">
+
+          {/* Left: zoomed slice — clip-path morphs from circle as user scrolls in */}
+          <div className="relative min-h-[55vw] md:min-h-0 overflow-hidden teig-morph">
+            {/* swap src here once real slice photo is uploaded */}
+            <Image
+              src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900&q=90"
+              alt="Handgemachter Pizzateig"
+              fill
+              className="object-cover"
+              style={{ objectPosition: "22% center" }}
+            />
+            {/* subtle dark vignette on the right edge to blend into text panel */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-cream/60" />
+          </div>
+
+          {/* Right: Teig text */}
+          <div className="flex items-center px-10 md:px-20 py-20 md:py-28 teig-text">
+            <div className="max-w-sm">
+              <p className="text-[11px] tracking-[0.5em] uppercase text-amber mb-8">
+                Der Teig
+              </p>
+              <h2
+                className="font-serif italic text-dark leading-[0.92] mb-10"
+                style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}
+              >
+                Handgemacht.<br />Ehrlich.<br />Original Napoletano.
+              </h2>
+              <p className="text-dark/50 text-sm leading-[1.95] mb-12 max-w-[30ch]">
+                Unser Teig entsteht in eigener Herstellung — 72 Stunden
+                Naturreife, Tipo&nbsp;00 Mehl aus der Mühle Caputo in Neapel,
+                natürliche Hefe. Kein Kompromiss, kein Zusatz.
+              </p>
+
+              {/* Ingredient table */}
+              <div className="space-y-0 border-t border-dark/10">
+                {[
+                  { name: "Tipo 00 Mehl", origin: "Mulino Caputo, Neapel" },
+                  { name: "San Marzano D.O.P.", origin: "Kampanien" },
+                  { name: "Fior di Latte", origin: "Agerola, Kampanien" },
+                  { name: "Olivenöl E.V.", origin: "Apulien" },
+                  { name: "Naturhefe", origin: "Eigenherstellung" },
+                ].map(({ name, origin }) => (
+                  <div
+                    key={name}
+                    className="flex items-center justify-between border-b border-dark/8 py-4"
+                  >
+                    <span className="text-sm text-dark/80 font-medium">
+                      {name}
+                    </span>
+                    <span className="text-[11px] tracking-[0.15em] text-dark/30 text-right">
+                      {origin}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       {/* ── MARQUEE ── */}
       <div className="bg-cream border-y border-dark/8 py-[18px] overflow-hidden">
         <div className="animate-marquee whitespace-nowrap inline-block">

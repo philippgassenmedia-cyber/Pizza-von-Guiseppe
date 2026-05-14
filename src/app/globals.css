@@ -19,3 +19,54 @@
     color: #fff;
   }
 }
+
+/* ── Transmorphism: pizza circle morphs into slice section ── */
+@keyframes teig-morph {
+  0% {
+    clip-path: circle(28% at 50% 50%);
+    transform: scale(1.4);
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: circle(130% at 50% 50%);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Fallback: simply visible */
+.teig-morph {
+  clip-path: circle(130% at 50% 50%);
+}
+
+/* Progressive enhancement: scroll-driven morph */
+@supports (animation-timeline: view()) {
+  .teig-morph {
+    animation: teig-morph linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 45%;
+  }
+}
+
+/* ── Ingredient list fade-up on scroll ── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .teig-text {
+    animation: fade-up linear both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 70%;
+  }
+}
