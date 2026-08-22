@@ -6,7 +6,7 @@ import SpinBadge from "./components/SpinBadge";
 import MenuSection from "./components/MenuSection";
 import Testimonials from "./components/Testimonials";
 
-/* ── shared bits ─────────────────────────────────────────── */
+/* ── shared bits ── */
 
 function ArrowIcon({ size = 13 }: { size?: number }) {
   return (
@@ -59,14 +59,14 @@ const STATS = [
   { val: "450°", label: "Holzofen" },
 ];
 
-/* ── page ──────────────────────────────────────────────── */
+/* ── page ── */
 
 export default function Home() {
   return (
     <>
       <Nav />
 
-      {/* ══ HERO ═══════════════════════════════════════ */}
+      {/* ══ HERO ══ */}
       <section
         id="top"
         className="relative overflow-hidden bg-cream px-4 pb-16 pt-28 md:px-8 md:pt-36"
@@ -127,7 +127,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ WILLKOMMEN ══════════════════════════════════ */}
+      {/* ══ WILLKOMMEN ══ */}
       <section className="bg-paper px-4 py-24 md:px-8 md:py-32">
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="text-center">
@@ -200,7 +200,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ DARK BAND — Handwerk ════════════════════════════ */}
+      {/* ══ DARK BAND — Handwerk ══ */}
       <section className="relative isolate overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1800&q=85"
@@ -233,10 +233,10 @@ export default function Home() {
 
       <Marquee words={["Originale Italia", "Forno a Legna", "Fatto a Mano"]} />
 
-      {/* ══ SPEISEKARTE ═════════════════════════════════ */}
+      {/* ══ SPEISEKARTE ══ */}
       <MenuSection />
 
-      {/* ══ ZUTATEN ═════════════════════════════════════ */}
+      {/* ══ ZUTATEN ══ */}
       <section id="zutaten" className="bg-paper px-4 py-24 md:px-8 md:py-32">
         <div className="mx-auto grid max-w-[1400px] items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
@@ -317,7 +317,7 @@ export default function Home() {
         reverse
       />
 
-      {/* ══ TRUCK / EVENTS ═══════════════════════════════ */}
+      {/* ══ TRUCK / EVENTS ══ */}
       <section
         id="truck"
         className="relative overflow-hidden bg-ink px-4 py-24 md:px-8 md:py-32"
@@ -414,10 +414,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ STIMMEN ═════════════════════════════════════ */}
+      {/* ══ STIMMEN ══ */}
       <Testimonials />
 
-      {/* ══ SCHLUSS-CTA ════════════════════════════════ */}
+      {/* ══ SCHLUSS-CTA ══ */}
       <section
         id="kontakt"
         className="relative overflow-hidden bg-basil px-4 pt-24 md:px-8 md:pt-32"
@@ -500,7 +500,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ FOOTER ══════════════════════════════════════ */}
+      {/* ══ FOOTER ══ */}
       <footer className="bg-ink px-4 py-8 md:px-8">
         <div className="mx-auto flex max-w-[1400px] flex-col items-center gap-6 md:flex-row md:justify-between">
           <a href="#top" className="flex items-baseline gap-2">
