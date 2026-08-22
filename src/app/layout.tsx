@@ -27,7 +27,7 @@ const caveat = Caveat({
 export const metadata: Metadata = {
   title: "Pizza Napoletano — Holzofen Pizza Truck an der Bergstraße",
   description:
-    "Echte neapolitanische Pizza aus dem mobilen Holzofen. Wir kommen zu Privatfeiern, Hochzeiten und Firmenevents und stehen auf den Stadtfesten der Region Bergstraße.",
+    "Giuseppes Holzofen-Truck auf den Straßen- und Foodfesten der Bergstraße. Jede Pizza 8 €, in sieben Minuten frisch gebacken. Ganzjährig privat buchbar zum Flatpreis.",
 };
 
 export default function RootLayout({
