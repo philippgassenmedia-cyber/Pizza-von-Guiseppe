@@ -8,65 +8,89 @@
   }
 
   body {
-    background-color: #FDF8F0;
-    color: #1A0E08;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background-color: #D97B1A;
+    background-color: #f0522a;
     color: #fff;
   }
 }
 
-/* ── Transmorphism: pizza circle morphs into slice section ── */
-@keyframes teig-morph {
-  0% {
-    clip-path: circle(28% at 50% 50%);
-    transform: scale(1.4);
-    opacity: 0.5;
+@layer components {
+  /* ── Display type: the load-bearing element of this design ──
+     Anton is already condensed; negative tracking + very tight leading
+     turns headlines into solid typographic blocks. */
+  .display {
+    @apply font-display uppercase leading-[0.83] tracking-tightest;
   }
-  60% {
-    opacity: 1;
+
+  /* Small all-caps label used above every section headline */
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.28em];
   }
-  100% {
-    clip-path: circle(130% at 50% 50%);
-    transform: scale(1);
-    opacity: 1;
+
+  /* ── Pill button with trailing arrow disc (see reference) ── */
+  .btn {
+    @apply inline-flex items-center gap-3 rounded-full pl-7 pr-2 py-2
+           text-[12px] font-bold uppercase tracking-[0.14em]
+           transition-colors duration-300;
+  }
+  .btn-disc {
+    @apply grid h-9 w-9 place-items-center rounded-full transition-transform
+           duration-300 group-hover:rotate-45;
+  }
+
+  /* Plain outline pill (menu tabs, small links) */
+  .pill {
+    @apply inline-flex items-center justify-center rounded-full border px-5 py-2
+           text-[11px] font-bold uppercase tracking-[0.16em]
+           transition-colors duration-300;
+  }
+
+  /* Outlined ghost display text used behind dark sections */
+  .ghost-text {
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.16);
+    color: transparent;
   }
 }
 
-/* Fallback: simply visible */
-.teig-morph {
-  clip-path: circle(130% at 50% 50%);
-}
-
-/* Progressive enhancement: scroll-driven morph */
-@supports (animation-timeline: view()) {
-  .teig-morph {
-    animation: teig-morph linear both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 45%;
-  }
-}
-
-/* ── Ingredient list fade-up on scroll ── */
-@keyframes fade-up {
-  from {
+@layer utilities {
+  /* Reveal-on-scroll — the IntersectionObserver in <Reveal> flips .is-in */
+  .reveal {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(28px);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
   }
-  to {
+  .reveal.is-in {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
-}
 
-@supports (animation-timeline: view()) {
-  .teig-text {
-    animation: fade-up linear both;
-    animation-timeline: view();
-    animation-range: entry 10% entry 70%;
+  /* No motion: show everything immediately */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .animate-marquee-l,
+    .animate-marquee-r,
+    .animate-spin-slow,
+    .animate-float {
+      animation: none !important;
+    }
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
