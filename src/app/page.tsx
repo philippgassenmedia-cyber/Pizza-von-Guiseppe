@@ -4,7 +4,7 @@ import Marquee from "./components/Marquee";
 import Reveal from "./components/Reveal";
 import SpinBadge from "./components/SpinBadge";
 import MenuSection from "./components/MenuSection";
-import Testimonials from "./components/Testimonials";
+import Termine from "./components/Termine";
 
 /* ── shared bits ── */
 
@@ -53,10 +53,10 @@ function Cta({
 }
 
 const STATS = [
-  { val: "240+", label: "Gebuchte Feiern" },
-  { val: "4,9", sub: "/5", label: "Gästebewertung" },
-  { val: "72h", label: "Teigreife" },
-  { val: "450°", label: "Holzofen" },
+  { val: "20", sub: " Jahre", label: "In Deutschland" },
+  { val: "2", sub: " Öfen", label: "Im Truck" },
+  { val: "7", sub: " Min", label: "Pro Pizza" },
+  { val: "8", sub: " €", label: "Jede Pizza" },
 ];
 
 /* ── page ── */
@@ -73,19 +73,18 @@ export default function Home() {
       >
         <div className="mx-auto max-w-[1400px]">
           <div className="relative">
-            {/* Display block */}
             <h1 className="display text-flame text-[clamp(3.6rem,15.5vw,15rem)]">
               <span className="block">Holzofen</span>
               <span className="block">Pizza</span>
               <span className="block text-ink">Bergstraße</span>
             </h1>
 
-            {/* Hero photo — overlaps the type, exactly like the reference */}
+            {/* Hero photo — overlaps the type */}
             <div className="pointer-events-none absolute right-0 top-[6%] hidden w-[38%] max-w-[520px] md:block">
               <div className="animate-float relative aspect-square rotate-[-7deg] overflow-hidden rounded-[40px] shadow-[0_40px_90px_rgba(23,22,15,0.28)]">
                 <Image
                   src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=85"
-                  alt="Neapolitanische Pizza frisch aus dem Holzofen"
+                  alt="Frisch gebackene Pizza aus dem Holzofen"
                   fill
                   priority
                   sizes="40vw"
@@ -99,7 +98,7 @@ export default function Home() {
           <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-[32px] md:hidden">
             <Image
               src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=900&q=85"
-              alt="Neapolitanische Pizza frisch aus dem Holzofen"
+              alt="Frisch gebackene Pizza aus dem Holzofen"
               fill
               priority
               sizes="100vw"
@@ -107,44 +106,39 @@ export default function Home() {
             />
           </div>
 
-          {/* Bottom row: CTA left · seal · copy right */}
           <div className="mt-10 flex flex-col gap-10 md:mt-16 md:flex-row md:items-end md:justify-between">
             <div className="flex items-center gap-6">
-              <Cta href="#kontakt">Termin sichern</Cta>
+              <Cta href="#termine">Nächste Termine</Cta>
               <SpinBadge className="hidden h-24 w-24 sm:block" />
             </div>
 
             <div className="max-w-md md:text-right">
-              <p className="eyebrow mb-3 text-basil">Seit 2018 · Hessen & BW</p>
+              <p className="eyebrow mb-3 text-basil">Straßenfeste & Privatfeiern</p>
               <p className="text-[15px] leading-[1.8] text-ink/55">
-                Wir fahren unseren Holzofen dorthin, wo gefeiert wird. Echter
-                neapolitanischer Teig, 72 Stunden gereift, in 90&nbsp;Sekunden bei
-                450&nbsp;°C gebacken — auf Ihrer Privatfeier genauso wie auf dem
-                Stadtfest.
+                Zwei Holzöfen, ein Truck, Giuseppes geheimer Teig. Sieben
+                Minuten von der Bestellung bis zur Pizza. Jede für 8 €.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══ WILLKOMMEN ══ */}
-      <section className="bg-paper px-4 py-24 md:px-8 md:py-32">
+      {/* ══ GIUSEPPE ══ */}
+      <section id="giuseppe" className="bg-paper px-4 py-24 md:px-8 md:py-32">
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="text-center">
-            <h2 className="display mx-auto max-w-[20ch] text-[clamp(2.1rem,5.4vw,4.6rem)] text-flame">
-              Pizza Napoletano —{" "}
-              <span className="text-ink">
-                Ihre Feier, Ihre Gäste, Ihre Pizza
-              </span>
+            <p className="eyebrow mb-5 text-flame">Il Padrone</p>
+            <h2 className="display mx-auto max-w-[18ch] text-[clamp(2.2rem,6vw,5.2rem)] text-ink">
+              Giuseppe kam aus Kalabrien.{" "}
+              <span className="text-flame">Der Teig kam mit.</span>
             </h2>
           </Reveal>
 
-          {/* Hero-plate with the name badge sitting on top */}
           <Reveal delay={100} className="relative mt-14">
             <div className="relative mx-auto aspect-[16/9] max-w-4xl overflow-hidden rounded-[40px]">
               <Image
-                src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1400&q=85"
-                alt="Pizza Margherita mit San-Marzano-Tomaten"
+                src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1400&q=85"
+                alt="Pizzateig wird von Hand ausgezogen"
                 fill
                 sizes="(max-width:1024px) 100vw, 900px"
                 className="object-cover"
@@ -161,23 +155,20 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {/* Text + stats */}
           <div className="mt-16 grid gap-12 lg:grid-cols-[1.1fr_1.4fr] lg:gap-20">
             <Reveal>
-              <p className="eyebrow mb-5 text-flame">Benvenuti</p>
               <h3 className="display mb-5 text-[1.9rem] text-ink">
-                Ein Ofen. Ein Handwerk. Kein Kompromiss.
+                Ein Rezept, das niemand kennt.
               </h3>
               <p className="mb-8 text-[15px] leading-[1.9] text-ink/55">
-                Angefangen hat alles mit einem gebrauchten Anhänger und einem
-                gemauerten Kuppelofen. Heute stehen wir auf den Festen zwischen
-                Darmstadt und Weinheim — und rollen zu Ihnen in den Garten, wenn
-                gefeiert wird. Was gleich geblieben ist: der Teig wird von Hand
-                gemacht, die Tomaten kommen aus Kampanien, und niemand bekommt
-                eine Pizza, die wir nicht selbst essen würden.
+                Vor 20 Jahren zog Giuseppe seiner Frau nach Deutschland. Zwei
+                Kinder später steht er an der Bergstraße am Ofen — die Wurzeln
+                aber liegen weiter in Kalabrien. Von dort kommen die Zutaten,
+                und von dort kommt der Teig: sein eigenes Rezept, das er
+                niemandem verrät.
               </p>
               <Cta href="#truck" tone="ink">
-                Mehr über uns
+                Der Truck
               </Cta>
             </Reveal>
 
@@ -187,9 +178,7 @@ export default function Home() {
                   <div key={s.label} className="bg-paper px-6 py-10 text-center">
                     <dd className="display text-[clamp(2.4rem,5vw,3.6rem)] text-ink">
                       {s.val}
-                      {s.sub && (
-                        <span className="text-[0.45em] text-ink/30">{s.sub}</span>
-                      )}
+                      <span className="text-[0.4em] text-ink/30">{s.sub}</span>
                     </dd>
                     <dt className="eyebrow mt-2 text-ink/40">{s.label}</dt>
                   </div>
@@ -200,11 +189,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ DARK BAND — Handwerk ══ */}
+      {/* ══ DARK BAND — der Teig ══ */}
       <section className="relative isolate overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1800&q=85"
-          alt="Pizzateig wird von Hand ausgezogen"
+          src="https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=1800&q=85"
+          alt="Pizza im lodernden Holzofen"
           fill
           sizes="100vw"
           className="-z-10 object-cover"
@@ -213,170 +202,80 @@ export default function Home() {
 
         <div className="mx-auto flex max-w-[1400px] flex-col gap-10 px-4 py-28 md:flex-row md:items-end md:justify-between md:px-8 md:py-40">
           <Reveal>
-            <h2 className="display max-w-[13ch] text-[clamp(2.4rem,7vw,6rem)] text-white">
-              Von Hand gemacht.<br />Von Grund auf.
+            <h2 className="display max-w-[12ch] text-[clamp(2.4rem,7vw,6rem)] text-white">
+              Das Rezept bleibt geheim.
             </h2>
           </Reveal>
 
           <Reveal delay={120} className="max-w-sm">
             <p className="font-script mb-6 text-4xl text-flame">Giuseppe</p>
             <p className="mb-8 text-[15px] leading-[1.9] text-white/60">
-              Jeden Morgen 40 Kilo Tipo-00-Mehl, Wasser, Salz, ein Hauch
-              Naturhefe. Danach 72 Stunden Ruhe im Kühlhaus — deshalb ist der
-              Rand luftig statt hart, und deshalb liegt die Pizza nicht schwer im
-              Magen.
+              Frisch ausgerollt, von Hand belegt, im Holzofen gebacken. Original
+              italienische Zutaten — mehr wird nicht verraten.
             </p>
-            <Cta href="#zutaten">Unsere Zutaten</Cta>
+            <Cta href="#karte">Zur Karte</Cta>
           </Reveal>
         </div>
       </section>
 
       <Marquee words={["Originale Italia", "Forno a Legna", "Fatto a Mano"]} />
 
-      {/* ══ SPEISEKARTE ══ */}
+      {/* ══ KARTE ══ */}
       <MenuSection />
 
-      {/* ══ ZUTATEN ══ */}
-      <section id="zutaten" className="bg-paper px-4 py-24 md:px-8 md:py-32">
-        <div className="mx-auto grid max-w-[1400px] items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <Reveal>
-            <p className="eyebrow mb-5 text-flame">Gli Ingredienti</p>
-            <h2 className="display mb-7 text-[clamp(2.2rem,5.2vw,4.4rem)] text-ink">
-              Beste Pizza gibt es nur mit{" "}
-              <span className="text-flame">besten Zutaten</span>
-            </h2>
-            <p className="mb-10 max-w-md text-[15px] leading-[1.9] text-ink/55">
-              Wir kaufen nicht beim Großhandel um die Ecke. Mehl, Tomaten und
-              Mozzarella kommen von Erzeugern, die wir kennen — die meisten davon
-              seit Jahren.
-            </p>
-
-            <ul className="mb-10 divide-y divide-ink/10 border-y border-ink/10">
-              {[
-                ["Tipo 00 Mehl", "Mulino Caputo, Neapel"],
-                ["San Marzano D.O.P.", "Kampanien"],
-                ["Fior di Latte", "Agerola, Kampanien"],
-                ["Olivenöl Extra Vergine", "Apulien"],
-                ["Naturhefe", "Eigene Herstellung"],
-              ].map(([name, origin]) => (
-                <li
-                  key={name}
-                  className="group flex items-center justify-between gap-4 py-4"
-                >
-                  <span className="display text-[1.25rem] text-ink transition-colors group-hover:text-flame">
-                    {name}
-                  </span>
-                  <span className="text-right text-[12px] font-medium uppercase tracking-[0.14em] text-ink/35">
-                    {origin}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <Cta href="#kontakt" tone="ink">
-              Belag zusammenstellen
-            </Cta>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="relative aspect-[3/4] overflow-hidden rounded-[28px]">
-                <Image
-                  src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&q=85"
-                  alt="Frisches Gemüse und Kräuter"
-                  fill
-                  sizes="(max-width:1024px) 46vw, 25vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="mt-10 space-y-4">
-                <div className="relative aspect-square overflow-hidden rounded-[28px]">
-                  <Image
-                    src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=800&q=85"
-                    alt="Gewürze und Olivenöl"
-                    fill
-                    sizes="(max-width:1024px) 46vw, 25vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="grid place-items-center rounded-[28px] bg-flame px-6 py-9 text-center">
-                  <p className="display text-[2.6rem] leading-none text-white">
-                    100%
-                  </p>
-                  <p className="eyebrow mt-2 text-white/70">Handgemacht</p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* ══ TERMINE ══ */}
+      <Termine />
 
       <Marquee
-        words={["Privatfeiern", "Hochzeiten", "Stadtfeste", "Firmenevents"]}
+        words={["Straßenfeste", "Foodfeste", "Privatfeiern", "Ganzjährig"]}
         tone="flame"
         reverse
       />
 
-      {/* ══ TRUCK / EVENTS ══ */}
+      {/* ══ TRUCK ══ */}
       <section
         id="truck"
         className="relative overflow-hidden bg-ink px-4 py-24 md:px-8 md:py-32"
       >
-        {/* Ghost display type in the background */}
         <span
           className="display ghost-text pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 select-none whitespace-nowrap text-center text-[19vw] leading-none"
           aria-hidden
         >
-          Mobiler Holzofen
+          Due Forni
         </span>
 
         <div className="relative mx-auto max-w-[1400px]">
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className="eyebrow mb-5 text-flame">Il Nostro Truck</p>
             <h2 className="display text-[clamp(2.2rem,6vw,5rem)] text-white">
-              Wir kommen dahin,{" "}
-              <span className="text-flame">wo gefeiert wird</span>
+              Zwei Öfen.{" "}
+              <span className="text-flame">Zehn Pizzen gleichzeitig.</span>
             </h2>
+            <p className="mx-auto mt-6 max-w-md text-[15px] leading-[1.85] text-white/55">
+              Deshalb dauert es bei uns sieben Minuten statt einer halben
+              Stunde — auch wenn die Schlange lang ist.
+            </p>
           </Reveal>
 
-          <Reveal delay={100} className="relative mx-auto mt-14 max-w-4xl">
-            <div className="relative aspect-[16/9] overflow-hidden rounded-[40px]">
-              <Image
-                src="https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=1400&q=85"
-                alt="Pizza im lodernden Holzofen"
-                fill
-                sizes="(max-width:1024px) 100vw, 900px"
-                className="object-cover"
-              />
-            </div>
-          </Reveal>
-
-          {/* Two event tracks */}
           <div className="mt-14 grid gap-5 md:grid-cols-2">
             {[
               {
                 n: "01",
-                title: "Privatfeiern",
-                copy: "Hochzeit, Geburtstag, Firmensommerfest oder Gartenparty — wir bauen auf, backen den ganzen Abend und nehmen alles wieder mit. Ab 30 Gästen.",
-                items: [
-                  "Hochzeiten & Empfänge",
-                  "Geburtstage & Jubiläen",
-                  "Firmen- & Teamevents",
-                  "Gartenfeste",
-                ],
+                title: "Auf dem Fest",
+                copy: "Wir stehen das ganze Jahr auf Straßen- und Foodfesten an der Bergstraße. Einfach vorbeikommen.",
+                items: ["Straßenfeste", "Foodtruck-Festivals", "Wein- & Stadtfeste"],
                 bg: "bg-flame",
+                cta: "Termine ansehen",
+                href: "#termine",
               },
               {
                 n: "02",
-                title: "Öffentliche Feste",
-                copy: "Der Truck ist fester Bestandteil vieler Feste an der Bergstraße. Wenn Sie uns buchen möchten: früh melden, die Sommerwochenenden gehen schnell weg.",
-                items: [
-                  "Stadt- & Straßenfeste",
-                  "Wein- & Erntefeste",
-                  "Weihnachtsmärkte",
-                  "Open-Air-Festivals",
-                ],
+                title: "Privat gebucht",
+                copy: "Hochzeit, Geburtstag, Firmenfeier — der Truck kommt zu Ihnen. Ein Flatpreis, keine versteckten Posten, das ganze Jahr über.",
+                items: ["Hochzeiten", "Geburtstage & Jubiläen", "Firmenfeiern"],
                 bg: "bg-basil",
+                cta: "Anfragen",
+                href: "#kontakt",
               },
             ].map((b, i) => (
               <Reveal
@@ -405,8 +304,8 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <Cta href="#kontakt" tone="white">
-                  Anfragen
+                <Cta href={b.href} tone="white">
+                  {b.cta}
                 </Cta>
               </Reveal>
             ))}
@@ -414,10 +313,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ STIMMEN ══ */}
-      <Testimonials />
-
-      {/* ══ SCHLUSS-CTA ══ */}
+      {/* ══ KONTAKT ══ */}
       <section
         id="kontakt"
         className="relative overflow-hidden bg-basil px-4 pt-24 md:px-8 md:pt-32"
@@ -426,22 +322,21 @@ export default function Home() {
           <Reveal className="text-center">
             <p className="eyebrow mb-6 text-white/45">Buchung & Kontakt</p>
             <h2 className="display mx-auto max-w-[15ch] text-[clamp(2.4rem,8vw,7rem)] text-flame">
-              Holen Sie sich Neapel<br />
+              Truck buchen,<br />
               <span className="font-script lowercase tracking-normal text-white">
-                in den Garten
+                zum Flatpreis
               </span>
             </h2>
           </Reveal>
 
-          {/* Contact grid */}
           <div className="mt-16 grid gap-px overflow-hidden rounded-[32px] bg-white/15 sm:grid-cols-3">
             {[
-              {
-                k: "Region",
-                v: "Bergstraße\nHessen & Baden-Württemberg",
-              },
+              { k: "Region", v: "Bergstraße\nHessen & Baden-Württemberg" },
               { k: "Telefon", v: "06251 · 000 000\nMo–Fr 10–18 Uhr" },
-              { k: "E-Mail", v: "info@pizza-napoletano.de\n@pizzanapoletano.bergstrasse" },
+              {
+                k: "E-Mail",
+                v: "info@pizza-napoletano.de\n@pizzanapoletano.bergstrasse",
+              },
             ].map((c, i) => (
               <Reveal key={c.k} delay={i * 90} className="bg-basil px-8 py-10">
                 <p className="eyebrow mb-4 text-white/40">{c.k}</p>
@@ -452,13 +347,12 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Newsletter / request bar */}
           <Reveal
             delay={120}
             className="mt-6 flex flex-col gap-4 rounded-[32px] bg-paper p-6 sm:flex-row sm:items-center sm:p-4 sm:pl-9"
           >
             <p className="display flex-1 text-[1.35rem] text-ink">
-              Termin im Kalender sichern
+              Termin anfragen
             </p>
             <form
               className="flex flex-1 items-center gap-2 rounded-full bg-cream p-2 pl-6"
@@ -487,11 +381,10 @@ export default function Home() {
             </form>
           </Reveal>
 
-          {/* Signature strip */}
           <div className="relative mt-20 h-[26vw] min-h-[150px] overflow-hidden rounded-t-[40px]">
             <Image
               src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1600&q=85"
-              alt="Frisch gebackene neapolitanische Pizza"
+              alt="Frisch gebackene Pizza"
               fill
               sizes="100vw"
               className="object-cover"
@@ -514,10 +407,10 @@ export default function Home() {
 
           <ul className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2">
             {[
-              ["#speisekarte", "Karte"],
-              ["#zutaten", "Zutaten"],
+              ["#karte", "Karte"],
+              ["#termine", "Termine"],
               ["#truck", "Truck"],
-              ["#stimmen", "Stimmen"],
+              ["#giuseppe", "Giuseppe"],
               ["#kontakt", "Kontakt"],
             ].map(([href, label]) => (
               <li key={href}>
